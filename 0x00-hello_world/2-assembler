@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc $CFILE -S -main.c=main.s
+gcc -S -main.c=main.s $CFILE
