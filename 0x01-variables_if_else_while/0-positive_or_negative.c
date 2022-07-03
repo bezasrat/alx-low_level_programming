@@ -18,14 +18,22 @@ n = rand() - RAND_MAX / 2;
 
 #include <stdio.h>
 
-for (n = 1; n > 0; n++)
+for(n = 1; n > 0; n++)
 {
-  printf("%d\n", n "is positive"\n);
+printf("%d",n,"is positive"\n);
 return (0);
 }
- for (n = -1; n < 0; n++)
+
+for (n=0; n++)
 {
-printf("%d\n", n "is negative"\n);
+printf("%d",n,"is zero"\n);     
+return (0);     
+}
+
+for(n = -1; n < 0; n++)
+{
+printf("%d",n,"is negative"\n);
 return (0);
 }
+
 }
