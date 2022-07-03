@@ -20,12 +20,12 @@ n = rand() - RAND_MAX / 2;
 
 for (n = 1; n > 0; n++)
 {
-  printf(;"%d\n", n "is positive");
+  printf("%d\n", n "is positive"\n);
 return (0);
 }
  for (n = -1; n < 0; n++)
 {
-printf"(;%d\n", n "is negative");
+printf("%d\n", n "is negative"\n);
 return (0);
 }
 }
