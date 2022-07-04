@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
+
 /* display a different random number everytime the program is launched */
 
 /**
@@ -18,17 +20,17 @@ n = rand() - RAND_MAX / 2;
 
 if (n > 0)
 {
-printf("%d", n, "is positive");
+printf("%d is positive\n", n);
 }
 
-if (n == 0)
+else if (n == 0)
 {
-printf("%d", n, "is zero");
+printf("%d is zero\n", n);
 }
 
-if (n < 0)
+else
 {
-printf("%d", n, "is negative");
+printf("%d is negative\n", n);
 }
 
 return (0);
