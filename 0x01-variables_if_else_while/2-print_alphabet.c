@@ -8,7 +8,7 @@
 
 int main(void)
 {
-int ch, lower_ch;
+int ch;
 
 for(ch = 'A'; ch <= 'Z'; ch++)
 {
