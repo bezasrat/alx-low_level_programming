@@ -12,17 +12,14 @@ int main(void)
 
 int ch;
 
-for (ch = 'A'; ch <= 'D'; ch++)
-for (ch = 'F'; ch <= 'P'; ch++)
-for (ch = 'R'; ch <= 'Z'; ch++)
+for (ch = 'A'; ch <= 'Z'; ch++)
+for (ch != 'E'; ch != 'Q'; ch++) 
 {
-  {
-    {
+{
 int lower_ch = tolower(ch);
 putchar(lower_ch);
-    }
-  }
- }
+}
+}
 putchar('\n');
 
 return (0);
