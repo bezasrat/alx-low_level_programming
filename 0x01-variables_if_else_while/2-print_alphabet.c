@@ -13,8 +13,7 @@ int ch;
 for (ch = 'A'; ch <= 'Z'; ch++)
 {
 int lower_ch = tolower(ch);
-putchar(lower_ch);
-putchar('\n');
+putchar(lower_ch); putchar('\n');
 }
 return (0);
 }
