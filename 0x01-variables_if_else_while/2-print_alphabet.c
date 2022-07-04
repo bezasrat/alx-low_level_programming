@@ -10,7 +10,7 @@ int main(void)
 {
 int ch;
 
-for(ch = 'A'; ch <= 'Z'; ch++)
+for (ch = 'A'; ch <= 'Z'; ch++)
 {
 int lower_ch = tolower(ch);
 putchar(lower_ch);
