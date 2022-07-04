@@ -16,24 +16,21 @@ int n;
 srand(time(0));
 n = rand() - RAND_MAX / 2;
 
-#include <stdio.h>
-
-for(n = 1; n > 0; n++)
+if (n > 0)
 {
-printf("%d",n,"is positive"\n);
+printf("%d", n, "is positive");
+}
+
+if (n == 0)
+{
+printf("%d", n, "is zero");
+}
+
+if (n < 0)
+{
+printf("%d", n, "is negative");
+}
+
 return (0);
-}
-
-for (n=0; n++)
-{
-printf("%d",n,"is zero"\n);     
-return (0);     
-}
-
-for(n = -1; n < 0; n++)
-{
-printf("%d",n,"is negative"\n);
-return (0);
-}
 
 }
