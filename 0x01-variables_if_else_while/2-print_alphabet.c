@@ -7,15 +7,13 @@
  */
 
 int main(void)
-
 {
-int ch;
+int ch, lower_ch;
 
-for(int x = 'A'; x <= 'Z'; x++)
+for(ch = 'A'; ch <= 'Z'; ch++)
 {
-int lower_x = tolower(x);
-putchar(lower_x);
+int lower_ch = tolower(ch);
+putchar(lower_ch);
 }
-
 return (0);
 }
