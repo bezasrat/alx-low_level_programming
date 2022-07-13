@@ -1,25 +1,23 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
- * main- prints the alphabet in lowercase except q and e
+ * main - prints combinations of single digit numbers
  *
  * Return: 0 if exited properly, non-zero otherwise
  */
-
 int main(void)
 {
 int i;
 
-for (i = 97; i < 123; i++)
-{
-if (i != 101 && i != 113)
+for (i = 48; i < 58; i++)
 {
 putchar(i);
+if (i != 57)
+{
+putchar(',');
+putchar(' ');
 }
 }
 putchar('\n');
-
 return (0);
 }
