@@ -5,70 +5,48 @@
 #define SE STDERR_FILENO
 
 /**
- * error_file - checks on files
- * @file_from: file from
- * @file_to: file_to
- * @argv: argument vector
- *
- * Return: void
- */
-void error_file(int file_from, int file_to, char *argv[])
-{
-if (file_from == -1)
-{
-dprintf(STDERR_FILENO, "Error: can't read from file %s\n", argv[1]);
-exit(98);
-}
-if (file_to == -1)
-{
-dprintf(STDERR_FILENO, "Error: can't write to %s\n", argv[2]);
-exit(99);
-}
-}
-
-/**
- * main - check code
- * @argc: number of argument
- * @argv: arguments of vector
- *
+ * main - create the copy bash script
+ * @ac: argument count
+ * @av: arguments as strings
  * Return: 0
  */
-int main(int argc, char *argv[])
+int main(int ac, char *av[])
 {
-int file_from, file_to, err_close;
-ssize_t nchars, nwr;
-char buf[1024];
+int input_fd, output_fd, istatus, ostatus;
+char buf[MAXSIZE];
+mode_t mode;
 
-if (argc != 3)
-{
-dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
-exit(97);
-}
-file_from = open(argv[1], O_RDONLY);
-file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-error_file(file_from, file_to, argv);
+mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+if (ac != 3)
+dprintf(SE, "Usage: cp file_from file_to\n"), exit(97);
+input_fd = open(av[1], O_RDONLY);
+if (input_fd == -1)
+dprintf(SE, "Error: Can't read from file %s\n", av[1]), exit(98);
+output_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+if (output_fd == -1)
+dprintf(SE, "Error: Can't write to %s\n", av[2]), exit(99);
 
-nchars = 1024;
-while (nchars == 1024)
+do {
+istatus = read(input_fd, buf, MAXSIZE);
+if (istatus == -1)
 {
-nchars = read(file_from, buf, 1024);
-if (nchars == -1)
-error_file(-1, 0, argv);
-nwr = write(file_to, buf, nchars);
-if (nwr == -1)
-error_file(0, -1, argv);
+dprintf(SE, "Error: Can't read from file %s\n", av[1]);
+exit(98);
 }
-err_close = close(file_from);
-if (err_close == -1)
+if (istatus > 0)
 {
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
-exit(100);
+ostatus = write(output_fd, buf, (ssize_t) istatus);
+if (ostatus == -1)
+dprintf(SE, "Error: Can't write to %s\n", av[2]), exit(99);
 }
-err_close = close(file_to);
-if (err_close == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
-exit(100);
-}
+} while (istatus > 0);
+
+istatus = close(input_fd);
+if (istatus == -1)
+dprintf(SE, "Error: Can't close fd %d\n", input_fd), exit(100);
+ostatus = close(output_fd);
+if (ostatus == -1)
+dprintf(SE, "Error: Can't close fd %d\n", output_fd), exit(100);
+
 return (0);
 }
